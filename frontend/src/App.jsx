@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Header from "./components/Header";
+import ProductList from "./components/ProductList";
 
 function App() {
-
   return (
-    <div className="app">
-      <h1>Welcome to Renart</h1>
+    <div>
+      <Header />
+      <main>
+        <ProductList />
+      </main>
     </div>
   );
 }
