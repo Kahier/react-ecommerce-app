@@ -13,11 +13,19 @@ function ProductList() {
 
   return (
     <div style={{ padding: "2rem" }}>
-      <h2>Products</h2>
+      <p
+        style={{
+          textAlign: "center",
+          fontSize: "45px",
+          fontFamily: "Avenir-Book",
+        }}
+      >
+        Product List
+      </p>
       <div style={{
         display: "grid",
         gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-        gap: "1rem",
+        gap: "12rem",
         marginTop: "1rem"
       }}>
         {products.map((product, index) => (

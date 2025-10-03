@@ -1,0 +1,26 @@
+/* =========================
+   Avenir Fonts
+========================= */
+
+/* Avenir Book */
+@font-face {
+  font-family: "Avenir-Book";
+  src: url("./avenir/Avenir-Book.ttf") format("opentype");
+}
+
+
+/* =========================
+   Montserrat Fonts
+========================= */
+
+/* Montserrat Regular */
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("./montserrat/Montserrat-Regular.ttf") format("opentype");
+}
+
+/* Montserrat Medium */
+@font-face {
+  font-family: "Montserrat-Medium";
+  src: url("./montserrat/Montserrat-Medium.otf") format("opentype");
+}

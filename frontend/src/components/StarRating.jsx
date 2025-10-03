@@ -41,7 +41,13 @@ function StarRating({score}) {
           </svg>
         );
       })}
-      <span style={{ fontSize: "0.85rem" }}>{roundedScore} / 5</span>
+      <span style={{ 
+            fontSize: "14px", 
+            fontFamily: "Avenir-Book",
+
+        }}
+        >
+        {roundedScore} / 5</span>
     </div>
   );
 }

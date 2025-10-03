@@ -11,9 +11,8 @@ function ProductCard({ product }) {
   };
 
   return (
-    <div
+    <div>
 
-    >
       {/* Image */}
       <img
         src={product.images[selectedColor]}
@@ -27,12 +26,24 @@ function ProductCard({ product }) {
       />
 
       {/* Title */}
-      <h3 style={{ marginTop: "0.8rem", fontSize: "1rem" }}>
+      <p
+        style={{
+          marginTop: "0.8rem",
+          fontSize: "15px",
+          fontFamily: "Montserrat-Medium",
+        }}
+      >
         {product.name}
-      </h3>
+      </p>
 
       {/* Price */}
-      <p style={{margin: "0.3rem 0" }}>
+      <p 
+        style={{
+          margin: "0.3rem 0",
+          fontSize: "15px",
+          fontFamily: "Montserrat-Regular",
+        }}
+      >
         ${product.price.toFixed(2)} USD
       </p>
 
@@ -53,7 +64,7 @@ function ProductCard({ product }) {
                   width: isSelected ? "24px" : "22px",
                   height: isSelected ? "24px" : "22px",
                   borderRadius: "100%",
-                  border: isSelected ? "1px solid #333" : "none", // only show border if selected
+                  border: isSelected ? "1px solid #333" : "none",
                   cursor: "pointer",
                 }}
               >
@@ -71,7 +82,13 @@ function ProductCard({ product }) {
         </div>
 
         {/* Selected Color Name */}
-        <p style={{ marginTop: "0.4rem", fontSize: "0.85rem", color: "#444" }}>
+        <p 
+          style={{ 
+            marginTop: "0.8rem", 
+            fontSize: "12px", 
+            fontFamily: "Avenir-Book",
+          }}
+        >
           {colorMap[selectedColor].label}
         </p>
       </div>
