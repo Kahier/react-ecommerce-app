@@ -11,11 +11,15 @@ function ProductCard({ product }) {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        minWidth: "300px",
+      }}
+    >
 
       {/* Image */}
       <img
-        src={product.images[selectedColor]}
+        src={product.images[selectedColor] }
         alt={product.name}
         style={{
           width: "100%",
