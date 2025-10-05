@@ -1,9 +1,39 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
+import FilterBar from "./FilterBar";
 import arrowImg from "../assets/image/arrow.png";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
+    const [filters, setFilters] = useState({
+    minPrice: "",
+    maxPrice: "",
+    minScore: "",
+    maxScore: "",
+  });
+
+  // Fetch products with optional filters
+  const fetchProducts = async () => {
+    const query = new URLSearchParams(
+      Object.fromEntries(
+        Object.entries(filters).filter(([_, v]) => v !== "")
+      )
+    ).toString();
+
+    const res = await fetch(`http://localhost:5000/api/products?${query}`);
+    const data = await res.json();
+    setProducts(data);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    fetchProducts(filters);
+  }, [filters]);
+
+
 
   useEffect(() => {
     fetch("http://localhost:5000/api/products")
@@ -23,6 +53,7 @@ function ProductList() {
       >
         Product List
       </p>
+      
       <div style={{ position: "relative" }}>
         {/* Left Arrow */}
         <button
@@ -102,6 +133,12 @@ function ProductList() {
             }}
           />
         </button>
+      </div>
+      <div
+            style={{
+            marginTop: "1rem",
+          }}>
+        <FilterBar onFilterChange={setFilters} />
       </div>
     </div>
   );

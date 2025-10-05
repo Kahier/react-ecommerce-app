@@ -24,8 +24,13 @@
   
 }
 
-.product-scroll-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem; /* ⬅️ space between arrows and scroll list */
+/* Remove number input arrows/spinners */
+.no-spinner::-webkit-inner-spin-button,
+.no-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-spinner {
+  -moz-appearance: textfield; /* Firefox */
 }

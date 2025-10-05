@@ -13,7 +13,10 @@ function ProductCard({ product }) {
   return (
     <div
       style={{
-        minWidth: "300px",
+        width: "300px",
+        flexShrink: 0,       
+        display: "flex",
+        flexDirection: "column",
       }}
     >
 
