@@ -53,63 +53,80 @@ function FilterBar({ onFilterChange }) {
         alignItems: "flex-end",
       }}
     >
-      {/* Min Price */}
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <label style={labelStyle}>Min Price ($)</label>
-        <input
-          type="number"
-          value={minPrice}
-          onChange={(e) => setMinPrice(e.target.value)}
-          placeholder="0"
-          style={inputStyle}
-          className="no-spinner"
-        />
-      </div>
+    {/* Min Price */}
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <label style={labelStyle}>Min Price ($)</label>
+      <input
+        type="number"
+        value={minPrice}
+        onChange={(e) => {
+          let val = e.target.value;
+          if (val < 0) val = 0;
+          if (val > 5000) val = 5000;
+          setMinPrice(val);
+        }}
+        placeholder="0"
+        style={inputStyle}
+        className="no-spinner"
+      />
+    </div>
 
-      {/* Max Price */}
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <label style={labelStyle}>Max Price ($)</label>
-        <input
-          type="number"
-          value={maxPrice}
-          onChange={(e) => setMaxPrice(e.target.value)}
-          placeholder="1000"
-          style={inputStyle}
-          className="no-spinner"
-        />
-      </div>
+    {/* Max Price */}
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <label style={labelStyle}>Max Price ($)</label>
+      <input
+        type="number"
+        value={maxPrice}
+        onChange={(e) => {
+          let val = e.target.value;
+          if (val < 0) val = 0;
+          if (val > 5000) val = 5000;
+          setMaxPrice(val);
+        }}
+        placeholder="1000"
+        style={inputStyle}
+        className="no-spinner"
+      />
+    </div>
 
-      {/* Min Score */}
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <label style={labelStyle}>Min Score</label>
-        <input
-          type="number"
-          value={minScore}
-          min="0"
-          max="5"
-          step="0.1"
-          onChange={(e) => setMinScore(e.target.value)}
-          placeholder="0"
-          style={inputStyle}
-          className="no-spinner"
-        />
-      </div>
+    {/* Min Score */}
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <label style={labelStyle}>Min Score</label>
+      <input
+        type="number"
+        value={minScore}
+        onChange={(e) => {
+          let val = e.target.value;
+          if (val < 0) val = 0;
+          if (val > 5) val = 5;
+          setMinScore(val);
+        }}
+        step="0.1"
+        placeholder="0"
+        style={inputStyle}
+        className="no-spinner"
+      />
+    </div>
 
-      {/* Max Score */}
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <label style={labelStyle}>Max Score</label>
-        <input
-          type="number"
-          value={maxScore}
-          min="0"
-          max="5"
-          step="0.1"
-          onChange={(e) => setMaxScore(e.target.value)}
-          placeholder="5"
-          style={inputStyle}
-          className="no-spinner"
-        />
-      </div>
+    {/* Max Score */}
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <label style={labelStyle}>Max Score</label>
+      <input
+        type="number"
+        value={maxScore}
+        onChange={(e) => {
+          let val = e.target.value;
+          if (val < 0) val = 0;
+          if (val > 5) val = 5;
+          setMaxScore(val);
+        }}
+        step="0.1"
+        placeholder="5"
+        style={inputStyle}
+        className="no-spinner"
+      />
+    </div>
+
 
       {/* Apply Button */}
       <button style={buttonStyle} onClick={handleApply}>

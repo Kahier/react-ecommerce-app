@@ -5,24 +5,27 @@ import arrowImg from "../assets/image/arrow.png";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
-    const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState({
     minPrice: "",
     maxPrice: "",
     minScore: "",
     maxScore: "",
   });
 
-  // Fetch products with optional filters
-  const fetchProducts = async () => {
-    const query = new URLSearchParams(
-      Object.fromEntries(
-        Object.entries(filters).filter(([_, v]) => v !== "")
-      )
-    ).toString();
+  const API_BASE = "https://react-ecommerce-app-84e1.onrender.com";
 
-    const res = await fetch(`http://localhost:5000/api/products?${query}`);
-    const data = await res.json();
-    setProducts(data);
+  const fetchProducts = async () => {
+    try {
+      const query = new URLSearchParams(
+        Object.fromEntries(Object.entries(filters).filter(([_, v]) => v !== ""))
+      ).toString();
+
+      const res = await fetch(`${API_BASE}/api/products?${query}`);
+      const data = await res.json();
+      setProducts(data);
+    } catch (err) {
+      console.error("Error fetching products:", err);
+    }
   };
 
   useEffect(() => {
@@ -30,17 +33,8 @@ function ProductList() {
   }, []);
 
   useEffect(() => {
-    fetchProducts(filters);
+    fetchProducts();
   }, [filters]);
-
-
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.error("Error fetching products:", err));
-  }, []);
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -53,12 +47,14 @@ function ProductList() {
       >
         Product List
       </p>
-      
+
       <div style={{ position: "relative" }}>
         {/* Left Arrow */}
         <button
           onClick={() =>
-            document.getElementById("product-scroll").scrollBy({ left: -300, behavior: "smooth" })
+            document
+              .getElementById("product-scroll")
+              .scrollBy({ left: -300, behavior: "smooth" })
           }
           style={{
             position: "absolute",
@@ -106,7 +102,9 @@ function ProductList() {
         {/* Right Arrow */}
         <button
           onClick={() =>
-            document.getElementById("product-scroll").scrollBy({ left: 300, behavior: "smooth" })
+            document
+              .getElementById("product-scroll")
+              .scrollBy({ left: 300, behavior: "smooth" })
           }
           style={{
             position: "absolute",
@@ -125,7 +123,7 @@ function ProductList() {
         >
           <img
             src={arrowImg}
-            alt="left arrow"
+            alt="right arrow"
             style={{
               width: "20px",
               height: "20px",
@@ -134,10 +132,8 @@ function ProductList() {
           />
         </button>
       </div>
-      <div
-            style={{
-            marginTop: "1rem",
-          }}>
+
+      <div style={{ marginTop: "1rem" }}>
         <FilterBar onFilterChange={setFilters} />
       </div>
     </div>
