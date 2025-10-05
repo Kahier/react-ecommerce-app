@@ -27,13 +27,32 @@ app.get("/api/products", async (req, res) => {
   try {
     const goldPrice = await getGoldPrice();
 
-    const updatedProducts = products.map((p) => {
+    let updatedProducts = products.map((p) => {
       const price = (p.popularityScore + 1) * p.weight * goldPrice;
       return {
         ...p,
         price: Number(price.toFixed(2)),
       };
     });
+
+    const { minPrice, maxPrice, minScore, maxScore } = req.query;
+      console.log(updatedProducts)
+
+    if (minPrice) {
+      updatedProducts = updatedProducts.filter((p) => p.price >= Number(minPrice));
+    }
+    if (maxPrice) {
+      updatedProducts = updatedProducts.filter((p) => p.price <= Number(maxPrice));
+    }
+    if (minScore) {
+      updatedProducts = updatedProducts.filter((p) => p.popularityScore >= Number(minScore)/5);
+    }
+    if (maxScore) {
+      updatedProducts = updatedProducts.filter((p) => p.popularityScore <= Number(maxScore)/5);
+    }
+
+      console.log(updatedProducts)
+
 
     res.json(updatedProducts);
   } catch (err) {
